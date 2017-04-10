@@ -1,0 +1,5 @@
+{
+  "summary": "${summary}",
+  "details": "${details}",
+  "anonymous": $anonymous
+}

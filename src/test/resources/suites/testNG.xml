@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test runner">
+    <listeners>
+        <listener class-name="com.ideabox.tests.utils.RetryListener"/>
+    </listeners>
+    <test name="Regression" parallel="classes" thread-count="1">
+        <classes>
+            <class name="com.ideabox.tests.runners.LoginRunner"/>
+            <class name="com.ideabox.tests.runners.AddIdeaRunner"/>
+            <class name="com.ideabox.tests.runners.IdeaFlowRunner"/>
+            <class name="com.ideabox.tests.runners.UnavailableStatusesCheckRunner"/>
+        </classes>
+    </test>
+</suite>
