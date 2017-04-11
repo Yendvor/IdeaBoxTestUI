@@ -44,7 +44,11 @@ public class Browsers {
     } else {
       Capabilities firefox = DesiredCapabilities.firefox();
       Capabilities chrome = DesiredCapabilities.chrome();
-      System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+      if (System.getProperty("runner", "local").equals("local")) {
+        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+      }else{
+        System.setProperty("webdriver.chrome.driver", "lib/chromedriver-ubuntu");
+      }
       switch (System.getProperty("browser","chrome").toLowerCase()){
         case "chrome":
           dr = WebDriverPool.DEFAULT.getDriver(chrome);
