@@ -6,7 +6,7 @@ import static com.ideabox.tests.config.Configuration.Environments.getEnvironment
  * Created by sorin on 5/11/16.
  */
 public class Configuration {
-  private static String envs = System.getProperty("env");
+  private static String envs = System.getProperty("env","dev");
 
   public static String getEnvs() {
     return envs;
