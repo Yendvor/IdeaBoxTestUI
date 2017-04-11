@@ -17,7 +17,7 @@ public class Browsers {
 
     Capabilities firefox = DesiredCapabilities.firefox();
     Capabilities chrome = DesiredCapabilities.chrome();
-    System.setProperty("webdriver.chrome.driver", "/Users/tdvoryanchenko/Downloads/IdeaBoxTestUI/lib/chromedriver");
+    System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
 
     switch (System.getProperty("browser").toLowerCase()){
       case "chrome":
