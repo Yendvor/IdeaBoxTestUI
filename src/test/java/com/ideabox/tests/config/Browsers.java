@@ -44,7 +44,7 @@ public class Browsers {
     } else {
       Capabilities firefox = DesiredCapabilities.firefox();
       Capabilities chrome = DesiredCapabilities.chrome();
-      if (System.getProperty("runner", "local").equals("local")) {
+      if (System.getProperty("runner", "jenkins").equals("local")) {
         System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
       }else{
         System.setProperty("webdriver.chrome.driver", "lib/chromedriver-ubuntu");
