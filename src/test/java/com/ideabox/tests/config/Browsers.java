@@ -19,6 +19,7 @@ public class Browsers {
     WebDriver dr;
 
     DesiredCapabilities caps =new DesiredCapabilities();
+    caps.setCapability("browserstack.local", "true");
 
 //    System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
 
@@ -29,12 +30,10 @@ public class Browsers {
         caps.setCapability("os", "OS X");
         caps.setCapability("os_version", "El Capitan");
         caps.setCapability("resolution", "1024x768");
-
         break;
       case "firefox":
         caps.setCapability("browser", "Firefox");
         caps.setCapability("browser_version", "44.0.1");
-        caps.setCapability("browserstack.local", "true");
         break;
       default:
         caps.setCapability("browser", "Chrome");
