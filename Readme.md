@@ -13,7 +13,9 @@ What was done:
 3. Implemented Reporting:
   * cucumber-reporting plugin in Jenkins
   * cucumber-reporting CustomReporter (used for local runs).
-4. Used maven for building and running tests: 	mvn clean test  5. Created docker file with Jenkins to run tests:
+4. Used maven for building and running tests: 
+    ```mvn clean test```
+ 5. Created docker file with Jenkins to run tests:
   * contains chrome&firefox browsers in docker
   * shared directory to store jenkins data for restarts
   * jenkins is available on localhost:8080 
@@ -29,7 +31,7 @@ What was done:
   * 7.3 run tests against environment “dev1”: 
   ```$ mvn test -Denv=dev1 ```
 8. Screenshots are added to final reports (in case of failures)
- 9. Support for Chrome and FF (default is Chrome)
+9. Support for Chrome and FF (default is Chrome)
 10. Rerun failed test is implemented via custom listener.
    If we need to rerun failed test it is configured in testNG.xml. 
    ```
