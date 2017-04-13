@@ -51,7 +51,9 @@ public class Hooks {
 
   public static void afterAll() {
     Browsers.closeAllDrivers();
-    CustomReporter.generateFinalReport();
+    if (System.getProperty("runner", "jenkins").equals("local")) {
+       CustomReporter.generateFinalReport();
+    }
   }
 
 
