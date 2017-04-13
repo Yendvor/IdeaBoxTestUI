@@ -3,7 +3,7 @@ Create base automation framework and create several E2E scenarios for ‘IdeaBox
   * Create manual E2E scenario: standard ‘create idea’ flow (Gherkin way)
   * Create several negative scenario - Gherkin way 
 
- Done. Please check  https://github.com/Yendvor/IdeaBoxTestUI.git
+ Done. Please check  [https://github.com/Yendvor/IdeaBoxTestUI.git](https://github.com/Yendvor/IdeaBoxTestUI.git)
 Java + Webdriver(+PageObject) + Cucumber was used for this task.
 Framework is based on TestNG.
 
@@ -15,7 +15,7 @@ What was done:
   * cucumber-reporting CustomReporter (used for local runs).
 4. Used maven for building and running tests: 
     ```mvn clean test```
- 5. Created docker file with Jenkins to run tests:
+5. Created docker file with Jenkins to run tests:
   * contains chrome&firefox browsers in docker
   * shared directory to store jenkins data for restarts
   * jenkins is available on localhost:8080 
