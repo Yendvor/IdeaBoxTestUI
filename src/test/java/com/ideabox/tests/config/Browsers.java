@@ -48,6 +48,7 @@ public class Browsers {
         System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
       }else{
         System.setProperty("webdriver.chrome.driver", "lib/chromedriver-ubuntu");
+        System.setProperty("webdriver.gecko.driver", "lib/geckodriver");
       }
       switch (System.getProperty("browser","chrome").toLowerCase()){
         case "chrome":
