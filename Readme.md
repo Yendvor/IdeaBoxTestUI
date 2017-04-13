@@ -36,3 +36,9 @@ Create base automation framework and create several E2E scenarios for ‘IdeaBox
           <listener class-name="com.ideabox.tests.utils.RetryListener"/>
   	</listeners>
  For now retry number is set to 2 times.
+
+
+11. Tests could be run using browsers:
+    * on docker machine
+    * on cloud service BrowserStack
+     -DbrowserStack = true
