@@ -55,7 +55,13 @@ public class IdeaListSteps {
   }
 
   @And("^Idea List page is shown$") public void ideaListPageIsShown() throws Throwable {
-    listPage= new IdeasListPage(driver);
+    listPage = new IdeasListPage(driver);
     listPage.waitUntilPageIsVisible();
+  }
+
+  @When("^I open Idea with summary \"([^\"]*)\"$") public void iOpenIdeaWithSummary(String summary)
+    throws Throwable {
+    listPage= new IdeasListPage(driver);
+    editPage = listPage.openEditIdea(listPage.findIdeaByName(summary));
   }
 }

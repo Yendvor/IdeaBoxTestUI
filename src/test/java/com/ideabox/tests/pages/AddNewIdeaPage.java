@@ -20,7 +20,7 @@ public class AddNewIdeaPage extends GeneralIdeaPage{
   @FindBy (id="ideaDetails")
   WebElement details;
 
-  @FindBy (id="checkbox")
+  @FindBy (name="isAnonymous")
   WebElement isAnonimous;
 
   @FindBy (className="dialog-cancel-btn")
@@ -64,11 +64,10 @@ public class AddNewIdeaPage extends GeneralIdeaPage{
     new WebDriverWait(driver, 10)
       .until(ExpectedConditions.visibilityOf(details));
     new WebDriverWait(driver, 10)
-      .until(ExpectedConditions.visibilityOf(isAnonimous));
-    new WebDriverWait(driver, 10)
       .until(ExpectedConditions.visibilityOf(cancelButton));
     new WebDriverWait(driver, 10)
       .until(ExpectedConditions.visibilityOf(submitButton));
   }
+
 
 }

@@ -16,12 +16,17 @@ import java.util.List;
  */
 public class EditIdeaPage extends GeneralIdeaPage{
 
+  @FindBy (className = "idea-details-content-block")
+  WebElement ideaContent;
+
+  @FindBy (css = "div.idea-details-title>h3")
+  WebElement ideaSummary;
+
+  @FindBy (className = "idea-details-content-description-body")
+  WebElement ideaDetails;
 
   @FindBy (className ="idea-details-control-block")
   WebElement ideaControl;
-
-  @FindBy (className = "idea-details-content-block")
-  WebElement ideaContent;
 
   @FindBy (className = "ideas-list-status-selector-block")
   WebElement statusSelect;
@@ -87,5 +92,13 @@ public class EditIdeaPage extends GeneralIdeaPage{
 
   public void selectStatus(WebElement statusElementByName) {
     jsClick(statusElementByName, driver);
+  }
+
+  public String getIdeaSummary() {
+    return ideaSummary.getText();
+  }
+
+  public String getIdeaDetails() {
+    return ideaDetails.getText();
   }
 }

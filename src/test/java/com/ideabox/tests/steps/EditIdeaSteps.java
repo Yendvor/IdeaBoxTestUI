@@ -72,4 +72,13 @@ public class EditIdeaSteps {
     }
   }
 
+  @And("^Idea summary is \"([^\"]*)\"$") public void ideaSummaryIs(String summary) throws Throwable {
+    editPage = new EditIdeaPage(driver);
+    Assert.assertEquals(summary, editPage.getIdeaSummary(), "Idea summary does not match");
+
+  }
+
+  @And("^Idea details is \"([^\"]*)\"$") public void ideaDetailsIs(String details) throws Throwable {
+    Assert.assertEquals(details, editPage.getIdeaDetails(), "Idea details does not match");
+  }
 }
