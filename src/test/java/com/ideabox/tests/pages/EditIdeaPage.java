@@ -24,7 +24,6 @@ public class EditIdeaPage extends GeneralIdeaPage{
   WebElement ideaContent;
 
   @FindBy (className = "ideas-list-status-selector-block")
-//  @FindBy (css = "btn btn-default btn-secondary form-control ui-select-toggle")
   WebElement statusSelect;
 
   @FindBys(@FindBy(className = "ui-select-choices-row"))
@@ -36,7 +35,6 @@ public class EditIdeaPage extends GeneralIdeaPage{
 
   @FindBy (className="ideas-list-status-label")
     WebElement statusLabel;
-
 
   By statusLabelLocator = By.className("ideas-list-status-label");
 
@@ -63,6 +61,7 @@ public class EditIdeaPage extends GeneralIdeaPage{
   }
 
   public WebElement getStatusElementByName(String text){
+    logger.info("Status found: "+statusesAvailable.size());
     for(WebElement statusItem: statusesAvailable){
       if(statusItem.findElement(statusLabelLocator).getText().equals(text))
         return statusItem;
@@ -86,4 +85,7 @@ public class EditIdeaPage extends GeneralIdeaPage{
     return this;
   }
 
+  public void selectStatus(WebElement statusElementByName) {
+    jsClick(statusElementByName, driver);
+  }
 }

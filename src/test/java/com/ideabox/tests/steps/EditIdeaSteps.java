@@ -4,7 +4,6 @@ import com.ideabox.tests.models.Ideas;
 import com.ideabox.tests.pages.EditIdeaPage;
 import com.ideabox.tests.pages.IdeasListPage;
 import cucumber.api.java.en.And;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,10 +49,8 @@ public class EditIdeaSteps {
   @And("^I change status to \"([^\"]*)\"$") public void iChangeStatusTo(String newStatus)
     throws Throwable {
     editPage = new EditIdeaPage(driver);
-    editPage.openStatusList();
     Assert.assertNotNull(editPage.getStatusElementByName(newStatus),"Status element with text "+newStatus+" was not found");
-    JavascriptExecutor js = (JavascriptExecutor) driver;
-    js.executeScript("arguments[0].click();", editPage.getStatusElementByName(newStatus));
+    editPage.selectStatus(editPage.getStatusElementByName(newStatus));
     editPage=editPage.submitStatusChange(newStatus);
     Assert.assertEquals(newStatus,editPage.getCurrentIdeaStatus(),"New idea status does not match");
     myIdea.setStatus(newStatus);

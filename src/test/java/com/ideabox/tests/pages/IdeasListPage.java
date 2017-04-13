@@ -44,7 +44,10 @@ public class IdeasListPage  extends GeneralIdeaPage{
   }
 
   public EditIdeaPage openEditIdea(WebElement idea){
-    idea.click();
+    logger.info("Idea element  "+idea.getTagName());
+    //workaround while firefox .click() does not work for firefox 49+
+    jsClick(idea, driver);
+    //idea.click();
     return new EditIdeaPage(driver);
   }
 

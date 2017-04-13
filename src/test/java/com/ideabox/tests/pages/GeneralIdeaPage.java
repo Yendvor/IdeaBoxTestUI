@@ -1,6 +1,7 @@
 package com.ideabox.tests.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -66,6 +67,12 @@ public class GeneralIdeaPage {
       .until(ExpectedConditions.visibilityOf(leaveFeedback));
     new WebDriverWait(driver, 10)
       .until(ExpectedConditions.visibilityOf(addIdea));
+  }
+
+  public static void jsClick(WebElement elem, WebDriver driver){
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].click();", elem);
+
   }
 
 }
