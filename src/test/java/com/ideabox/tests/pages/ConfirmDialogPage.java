@@ -33,11 +33,11 @@ private WebDriver driver;
   }
 
   public void waitUntilllCOnfirmDIalogIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(submitButton));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(cancelButton));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(dialogContentBlock));
   }
 

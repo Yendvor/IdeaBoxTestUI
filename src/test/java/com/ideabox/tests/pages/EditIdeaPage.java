@@ -48,11 +48,11 @@ public class EditIdeaPage extends GeneralIdeaPage{
   }
 
   public void waitUntilPageIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaControl));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaContent));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(statusSelect));
   }
 

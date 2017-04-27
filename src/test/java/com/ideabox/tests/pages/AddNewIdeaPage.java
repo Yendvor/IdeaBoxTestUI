@@ -57,15 +57,15 @@ public class AddNewIdeaPage extends GeneralIdeaPage{
   }
 
   public void waitUntilPageIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(addDialod));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(summary));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(details));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(cancelButton));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(submitButton));
   }
 

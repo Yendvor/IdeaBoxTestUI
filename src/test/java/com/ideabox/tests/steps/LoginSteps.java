@@ -2,14 +2,12 @@ package com.ideabox.tests.steps;
 
 import com.ideabox.tests.pages.IdeasListPage;
 import com.ideabox.tests.pages.LoginPage;
+import com.ideabox.tests.utils.BaseUtil;
 import com.ideabox.tests.utils.Common;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
-
-import java.net.MalformedURLException;
 
 /**
  * Created by tdvoryanchenko on 4/6/17.
@@ -17,24 +15,23 @@ import java.net.MalformedURLException;
 
 public class LoginSteps {
 
+  private BaseUtil base;
 
   LoginPage lPage;
   IdeasListPage listPage;
 
-  WebDriver driver;
-  public LoginSteps() throws MalformedURLException {
-    Hooks hook=  new Hooks();
-    driver = hook.driver;
+  public LoginSteps(BaseUtil base){
+    this.base= base;
   }
 
   @Given("^I open Ideabox URL$") public void iOpenIdeaboxURL()
     throws Throwable {
-    driver.navigate().to(Common.getBaseUrl());
+    base.driver.navigate().to(Common.getBaseUrl());
   }
 
   @And("^Login page is shown$") public void loginPageIsShown()
     throws Throwable {
-    lPage = new LoginPage(driver);
+    lPage = new LoginPage(base.driver);
     lPage.waitUntilLoginPageIsVisible();
   }
 
@@ -57,9 +54,16 @@ public class LoginSteps {
   @And("^I'm logged in as \"([^\"]*)\"$") public void iMLoggedInAs(String user) throws Throwable {
     String login = Common.getPropByKey(user+"Login", "userData");
     String pass = Common.getPropByKey(user+"Password", "userData");
-    driver.navigate().to(Common.getBaseUrl());
-    lPage = new LoginPage(driver);
-    lPage.waitUntilLoginPageIsVisible();
-    listPage = lPage.doLogin(login,pass);
+    listPage = new IdeasListPage(base.driver);
+
+    base.driver.navigate().to(listPage.getPageUrl());
+    lPage = new LoginPage(base.driver);
+    if(lPage.getPageUrl().equals(base.driver.getCurrentUrl()))
+    {
+      lPage.waitUntilLoginPageIsVisible();
+      listPage = lPage.doLogin(login,pass);
+    }else {
+      listPage = new IdeasListPage(base.driver);
+    }
   }
 }

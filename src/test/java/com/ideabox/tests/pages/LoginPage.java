@@ -1,5 +1,6 @@
 package com.ideabox.tests.pages;
 
+import com.ideabox.tests.utils.Common;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,8 @@ public class LoginPage {
   @FindBy (css="form button")
   WebElement submitButton;
 
+  protected String pageLink="/login";
+
 private WebDriver driver;
 
   public LoginPage(WebDriver driver) {
@@ -36,11 +39,11 @@ private WebDriver driver;
   }
 
   public void waitUntilLoginPageIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(username));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(password));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(submitButton));
   }
 
@@ -57,5 +60,9 @@ private WebDriver driver;
 
   public IdeasListPage userIsLoggedIn() {
     return new IdeasListPage(driver);
+  }
+
+  public String getPageUrl(){
+    return Common.getBaseUrl()+pageLink;
   }
 }

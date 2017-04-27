@@ -32,14 +32,15 @@ public class IdeasListPage  extends GeneralIdeaPage{
   public IdeasListPage(WebDriver driver) {
     super(driver);
     PageFactory.initElements(driver, this);
+    pageLink = pageLink+"/ideas";
   }
 
   public void waitUntilPageIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOfElementLocated(ideaSummaryLocator));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaItems.get(0)));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaLinks.get(0)));
   }
 

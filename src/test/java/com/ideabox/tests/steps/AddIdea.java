@@ -2,29 +2,26 @@ package com.ideabox.tests.steps;
 
 import com.ideabox.tests.pages.AddNewIdeaPage;
 import com.ideabox.tests.pages.IdeasListPage;
+import com.ideabox.tests.utils.BaseUtil;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
-
-import java.net.MalformedURLException;
 
 /**
  * Created by tdvoryanchenko on 4/13/17.
  */
-public class AddIdea {
+public class AddIdea extends BaseUtil {
 
   AddNewIdeaPage addIdea;
   IdeasListPage lPage;
 
-  WebDriver driver;
-  public AddIdea() throws MalformedURLException {
-    Hooks hook=  new Hooks();
-    driver = hook.driver;
+  private BaseUtil base;
+  public AddIdea(BaseUtil base){
+   this.base=base;
   }
 
   @When("^I open Add Idea dialog$") public void iOpenAddIdeaDialog()
     throws Throwable {
-    lPage=new IdeasListPage(driver);
+    lPage=new IdeasListPage(base.driver);
     addIdea=lPage.openAddIdeaPage();
     addIdea.waitUntilPageIsVisible();
   }

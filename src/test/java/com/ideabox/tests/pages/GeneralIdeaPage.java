@@ -1,5 +1,6 @@
 package com.ideabox.tests.pages;
 
+import com.ideabox.tests.utils.Common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -57,15 +58,15 @@ public class GeneralIdeaPage {
   }
 
   public void waitUntilPageIsVisible() {
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(allIdeas));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(logout));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(myIdeas));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(leaveFeedback));
-    new WebDriverWait(driver, 10)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(addIdea));
   }
 
@@ -73,6 +74,10 @@ public class GeneralIdeaPage {
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("arguments[0].click();", elem);
 
+  }
+
+  public String getPageUrl(){
+    return Common.getBaseUrl()+pageLink;
   }
 
 }

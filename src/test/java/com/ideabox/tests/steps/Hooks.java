@@ -1,14 +1,14 @@
 package com.ideabox.tests.steps;
 
 import com.ideabox.tests.config.Browsers;
+import com.ideabox.tests.utils.BaseUtil;
 import com.ideabox.tests.utils.Common;
-import com.ideabox.tests.utils.CustomReporter;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterSuite;
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -16,12 +16,12 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by tdvoryanchenko on 2/24/16.
  */
-public class Hooks {
+public class Hooks extends BaseUtil{
 
-  public WebDriver driver;
+ private BaseUtil base;
 
-  public Hooks() throws MalformedURLException {
-        driver= Browsers.getDriver();
+  public Hooks(BaseUtil base) {
+    this.base=base;
   }
 
   @Before
@@ -29,12 +29,16 @@ public class Hooks {
    * Delete all cookies at the start of each scenario to avoid
    * shared state between tests
    */
-  public void openBrowser(final Scenario scenario) throws MalformedURLException {
-    driver= Browsers.getDriver();
-    driver.manage().window().maximize();
-    driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-    driver.manage().deleteAllCookies();
-    Common.turnOffModalDialog(driver);
+  public void openBrowser(final Scenario scenario)  {
+    try {
+      base.driver= Browsers.getDriver();
+      base.driver.manage().window().maximize();
+      base.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    //  base.driver.manage().deleteAllCookies();
+      Common.turnOffModalDialog(base.driver);
+    } catch (MalformedURLException e) {
+      e.printStackTrace();
+    }
   }
 
   @After
@@ -43,21 +47,14 @@ public class Hooks {
     if (!scenario.isFailed()) {
       return;
     }
-    scenario.write("Current Page URL is " + driver.getCurrentUrl());
-    if (driver instanceof TakesScreenshot) {
-      scenario.embed(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/jpeg");
+    scenario.write("Current Page URL is " + base.driver.getCurrentUrl());
+    if (base.driver instanceof TakesScreenshot) {
+      scenario.embed(((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES), "image/jpeg");
     }
   }
-
-  public static void afterAll() {
+  @AfterSuite
+  public void testDown(){
     Browsers.closeAllDrivers();
-    if (System.getProperty("runner", "jenkins").equals("local")) {
-       CustomReporter.generateFinalReport();
-    }
   }
 
-
-  public static void beforeAll() {
-    CustomReporter.cleanReportDirectory();
-  }
 }

@@ -1,17 +1,13 @@
 package com.ideabox.tests.steps;
 
-import com.ideabox.tests.models.Ideas;
 import com.ideabox.tests.pages.EditIdeaPage;
 import com.ideabox.tests.pages.IdeasListPage;
+import com.ideabox.tests.utils.BaseUtil;
 import cucumber.api.java.en.And;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.testng.Assert;
 
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,23 +15,20 @@ import java.util.List;
 /**
  * Created by tdvoryanchenko on 4/6/17.
  */
-@ContextConfiguration("/cucumber.xml")
-public class EditIdeaSteps {
+public class EditIdeaSteps extends BaseUtil{
   private static final Logger logger = LoggerFactory.getLogger(EditIdeaPage.class);
 
-  @Autowired Ideas myIdea;
+  private BaseUtil base;
   EditIdeaPage editPage;
   IdeasListPage listPage;
 
-  WebDriver driver;
-  public EditIdeaSteps() throws MalformedURLException {
-    Hooks hook=  new Hooks();
-    driver = hook.driver;
+  public EditIdeaSteps(BaseUtil base) {
+    this.base=base;
   }
 
   @And("^Edit idea page is shown$") public void editIdeaPageIsShown()
     throws Throwable {
-    editPage = new EditIdeaPage(driver);
+    editPage = new EditIdeaPage(base.driver);
     editPage.waitUntilPageIsVisible();
   }
 
@@ -48,22 +41,22 @@ public class EditIdeaSteps {
 
   @And("^I change status to \"([^\"]*)\"$") public void iChangeStatusTo(String newStatus)
     throws Throwable {
-    editPage = new EditIdeaPage(driver);
+    editPage = new EditIdeaPage(base.driver);
     Assert.assertNotNull(editPage.getStatusElementByName(newStatus),"Status element with text "+newStatus+" was not found");
     editPage.selectStatus(editPage.getStatusElementByName(newStatus));
     editPage=editPage.submitStatusChange(newStatus);
     Assert.assertEquals(newStatus,editPage.getCurrentIdeaStatus(),"New idea status does not match");
-    myIdea.setStatus(newStatus);
+    base.myIdea.setStatus(newStatus);
   }
 
   @And("^I go to idea list page$") public void iGoToIdeaListPage() throws Throwable {
-    editPage = new EditIdeaPage(driver);
+    editPage = new EditIdeaPage(base.driver);
     listPage=editPage.openAllIdeasPage();
   }
 
   @And("^Idea statuses \"([^\"]*)\" are unavailable$")
   public void ideaStatusesAreUnavailable(String statusesNegative) throws Throwable {
-    editPage = new EditIdeaPage(driver);
+    editPage = new EditIdeaPage(base.driver);
     ArrayList<String> statusesListNegative=  new ArrayList<>(Arrays.asList(statusesNegative.split(",")));
     editPage.openStatusList();
     logger.info("statusList"+ editPage.getStatusesList());
@@ -73,7 +66,7 @@ public class EditIdeaSteps {
   }
 
   @And("^Idea summary is \"([^\"]*)\"$") public void ideaSummaryIs(String summary) throws Throwable {
-    editPage = new EditIdeaPage(driver);
+    editPage = new EditIdeaPage(base.driver);
     Assert.assertEquals(summary, editPage.getIdeaSummary(), "Idea summary does not match");
 
   }

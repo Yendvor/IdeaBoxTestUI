@@ -1,7 +1,6 @@
 package com.ideabox.tests.utils;
 
 import com.ideabox.tests.config.Configuration;
-import io.restassured.response.Response;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -76,8 +75,6 @@ public class Common {
     js.executeScript("window.onbeforeunload = undefined");
   }
 
-  public static String getEntityFromResponse(Response response, String entity) {
-    return response.body().jsonPath().getString(entity);
-  }
+
 
 }

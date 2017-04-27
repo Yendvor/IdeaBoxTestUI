@@ -22,7 +22,13 @@ public class DriverFactory
     protected WebDriver initialValue()
     {
       WebDriver dr;
-      System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+      if (System.getProperty("runner", "jenkins").equals("local")) {
+        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+        System.setProperty("webdriver.gecko.driver", "lib/geckodriver-mac");
+      }else{
+        System.setProperty("webdriver.chrome.driver", "lib/chromedriver-ubuntu");
+        System.setProperty("webdriver.gecko.driver", "lib/geckodriver");
+      }
       switch (System.getProperty("browser").toLowerCase()){
         case "chrome":
           dr =  new ChromeDriver();
@@ -36,7 +42,6 @@ public class DriverFactory
       }
       return dr;
     }
-
 
   };
 
