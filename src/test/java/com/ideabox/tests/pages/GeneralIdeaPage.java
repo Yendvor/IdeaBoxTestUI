@@ -47,6 +47,10 @@ public class GeneralIdeaPage {
         PageFactory.initElements(driver, this);
   }
 
+  public void doLogout(){
+    logout.click();
+  }
+
   public IdeasListPage openAllIdeasPage(){
     allIdeas.click();
     return new IdeasListPage(driver);

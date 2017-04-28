@@ -22,7 +22,7 @@ public class IdeaService {
 
   public static String addIdea(Ideas idea) {
     //get Token
-    Header token =getAuthToken(Common.getUserLogin("adminUser"),Common.getUserPass("adminUser"));
+    Header token =getAuthToken(Common.getUserLogin("ldapUser"),Common.getUserPass("ldapUser"));
     JsonObject ideaPayLoad = idea.getCreateIdeaJson();
     logger.info("idea body:"+ideaPayLoad.toString());
 

@@ -26,6 +26,7 @@ public class LoginSteps {
 
   @Given("^I open Ideabox URL$") public void iOpenIdeaboxURL()
     throws Throwable {
+    base.driver.manage().deleteAllCookies();
     base.driver.navigate().to(Common.getBaseUrl());
   }
 
@@ -55,7 +56,6 @@ public class LoginSteps {
     String login = Common.getPropByKey(user+"Login", "userData");
     String pass = Common.getPropByKey(user+"Password", "userData");
     listPage = new IdeasListPage(base.driver);
-
     base.driver.navigate().to(listPage.getPageUrl());
     lPage = new LoginPage(base.driver);
     if(lPage.getPageUrl().equals(base.driver.getCurrentUrl()))
@@ -65,5 +65,10 @@ public class LoginSteps {
     }else {
       listPage = new IdeasListPage(base.driver);
     }
+  }
+
+  @And("^I do logout$") public void iDoLogout() throws Throwable {
+    listPage = new IdeasListPage(base.driver);
+    listPage.doLogout();
   }
 }

@@ -13,3 +13,4 @@ Feature: Login to IdeaBox
     Examples:
     | UserName | Password|
     | ideabox-admin | w7kbqf%62xm |
+    | ideabox-ldap  |xwPgV42Px9Af67LjJtr|

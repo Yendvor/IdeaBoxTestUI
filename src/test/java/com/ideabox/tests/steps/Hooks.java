@@ -33,7 +33,7 @@ public class Hooks extends BaseUtil{
     try {
       base.driver= Browsers.getDriver();
       base.driver.manage().window().maximize();
-      base.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      base.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     //  base.driver.manage().deleteAllCookies();
       Common.turnOffModalDialog(base.driver);
     } catch (MalformedURLException e) {

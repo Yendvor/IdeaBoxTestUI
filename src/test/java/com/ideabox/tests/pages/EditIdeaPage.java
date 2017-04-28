@@ -1,5 +1,6 @@
 package com.ideabox.tests.pages;
 
+import com.ideabox.tests.utils.Common;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,11 +38,11 @@ public class EditIdeaPage extends GeneralIdeaPage{
   @FindBy(className="ui-select-choices")
   WebElement statusesDropDown;
 
-
   @FindBy (className="ideas-list-status-label")
     WebElement statusLabel;
 
   By statusLabelLocator = By.className("ideas-list-status-label");
+  By statusDropDownLocator = By.className("ui-select-choices");
 
   public EditIdeaPage(WebDriver driver) {
     super(driver);
@@ -75,7 +76,11 @@ public class EditIdeaPage extends GeneralIdeaPage{
   }
 
   public void openStatusList() {
-    statusSelect.click();
+    if(!Common.isElementPresent(statusDropDownLocator, driver)){
+      statusSelect.click();
+    }
+   // jsClick(statusSelect, driver);
+
   }
 
   public String getCurrentIdeaStatus() {
