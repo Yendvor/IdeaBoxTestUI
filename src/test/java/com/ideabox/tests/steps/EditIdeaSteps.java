@@ -58,8 +58,7 @@ public class EditIdeaSteps extends BaseUtil{
   public void ideaStatusesAreUnavailable(String statusesNegative) throws Throwable {
     editPage = new EditIdeaPage(base.driver);
     ArrayList<String> statusesListNegative=  new ArrayList<>(Arrays.asList(statusesNegative.split(",")));
-    editPage.openStatusList();
-    logger.info("statusList"+ editPage.getStatusesList());
+    //logger.info("statusList"+ editPage.getStatusesList());
     for (String status: statusesListNegative) {
       Assert.assertFalse(editPage.getStatusesList().contains(status),"Status "+status+" should NOT be present in list of statuses: "+ editPage.getStatusesList());
     }

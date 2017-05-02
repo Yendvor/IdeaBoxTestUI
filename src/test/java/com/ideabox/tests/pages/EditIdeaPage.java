@@ -43,6 +43,7 @@ public class EditIdeaPage extends GeneralIdeaPage{
 
   By statusLabelLocator = By.className("ideas-list-status-label");
   By statusDropDownLocator = By.className("ui-select-choices");
+  By statusNotEditable= By.cssSelector("ideas-list-status-selector-block non-editable-selector");
 
   public EditIdeaPage(WebDriver driver) {
     super(driver);
@@ -53,15 +54,16 @@ public class EditIdeaPage extends GeneralIdeaPage{
       .until(ExpectedConditions.visibilityOf(ideaControl));
     new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaContent));
-    new WebDriverWait(driver, 1)
-      .until(ExpectedConditions.visibilityOf(statusSelect));
   }
 
 
   public List<String> getStatusesList(){
     List<String> statuses = new ArrayList<>();
+    if(isStatusEditable()){
+      openStatusList();
     for(WebElement statusItem: statusesAvailable){
       statuses.add(statusItem.findElement(statusLabelLocator).getText());
+    }
     }
     return statuses;
   }
@@ -79,8 +81,10 @@ public class EditIdeaPage extends GeneralIdeaPage{
     if(!Common.isElementPresent(statusDropDownLocator, driver)){
       statusSelect.click();
     }
-   // jsClick(statusSelect, driver);
+  }
 
+  public boolean isStatusEditable(){
+    return !Common.isElementPresent(statusNotEditable,driver);
   }
 
   public String getCurrentIdeaStatus() {

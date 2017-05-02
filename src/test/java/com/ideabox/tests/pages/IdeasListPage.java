@@ -36,11 +36,11 @@ public class IdeasListPage  extends GeneralIdeaPage{
   }
 
   public void waitUntilPageIsVisible() {
-    new WebDriverWait(driver, 3)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOfElementLocated(ideaSummaryLocator));
-    new WebDriverWait(driver, 3)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaItems.get(0)));
-    new WebDriverWait(driver, 3)
+    new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(ideaLinks.get(0)));
   }
 

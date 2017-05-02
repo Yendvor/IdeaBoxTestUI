@@ -50,10 +50,10 @@ public class Common {
     boolean result = driver.findElements(locator).size() > 0;
     if (result) {
       result = driver.findElement(locator).isDisplayed();
-      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
       return result;
     } else {
-      driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
       return result;
     }
   }
