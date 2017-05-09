@@ -8,6 +8,8 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterSuite;
 
 import java.net.MalformedURLException;
@@ -18,7 +20,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Hooks extends BaseUtil{
 
- private BaseUtil base;
+  private BaseUtil base;
+  protected static final Logger logger = LoggerFactory.getLogger(Hooks.class);
 
   public Hooks(BaseUtil base) {
     this.base=base;
@@ -34,7 +37,6 @@ public class Hooks extends BaseUtil{
       base.driver= Browsers.getDriver();
       base.driver.manage().window().maximize();
       base.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-    //  base.driver.manage().deleteAllCookies();
       Common.turnOffModalDialog(base.driver);
     } catch (MalformedURLException e) {
       e.printStackTrace();
@@ -47,6 +49,7 @@ public class Hooks extends BaseUtil{
     if (!scenario.isFailed()) {
       return;
     }
+    logger.error("Scenario "+ scenario.getName()+" is failed: "+ scenario.getStatus());
     scenario.write("Current Page URL is " + base.driver.getCurrentUrl());
     if (base.driver instanceof TakesScreenshot) {
       scenario.embed(((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES), "image/jpeg");

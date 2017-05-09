@@ -6,7 +6,6 @@ import com.ideabox.tests.models.Ideas;
 import com.ideabox.tests.utils.Common;
 import com.ideabox.tests.utils.REST;
 import org.apache.http.Header;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -14,7 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public class IdeaService {
-  private static final Logger logger = LoggerFactory.getLogger(IdeaService.class);
+  private static final org.slf4j.Logger logger = LoggerFactory.getLogger(IdeaService.class);
   protected static String ideaboxUIURL = Configuration.getIdeaboxUIURL(Configuration.getEnvs());
   private static REST rest=new REST();
 
@@ -24,7 +23,7 @@ public class IdeaService {
     //get Token
     Header token =getAuthToken(Common.getUserLogin("ldapUser"),Common.getUserPass("ldapUser"));
     JsonObject ideaPayLoad = idea.getCreateIdeaJson();
-    logger.info("idea body:"+ideaPayLoad.toString());
+    logger.debug("idea body:"+ideaPayLoad.toString());
 
     rest.setPostUrl(ideaboxUIURL+ Ideas.ideaUrl);
     //set user logged in header
@@ -39,10 +38,9 @@ public class IdeaService {
     Header token =getAuthToken(Common.getUserLogin("ldapUser"),Common.getUserPass("ldapUser"));
 
     JsonObject ideaPayLoad = idea.getIdeaStatusJson();
-    logger.info("status body:"+ideaPayLoad.toString());
+    logger.debug("status body:"+ideaPayLoad.toString());
 
     rest.setPutUrl(ideaboxUIURL+ Ideas.ideaUrl+"/"+idea.getID()+ Ideas.statusUrl);
-    //set user logged in header
     rest.setPutHeader(token);
     rest.doPut(rest.prepareBodyFromJson(ideaPayLoad));
     rest.checkResponseCode(202);
@@ -53,11 +51,11 @@ public class IdeaService {
     authPayload.addProperty("login", login);
     authPayload.addProperty("password", pass);
 
-    logger.info(""+authPayload.toString());
+    logger.debug("auth: "+authPayload.toString());
     rest.setPostUrl(ideaboxUIURL+"/proxy/ibengine/login");
     rest.doPost(rest.prepareBodyFromJson(authPayload));
     rest.checkResponseCode(200);
-    System.out.println("Token is "+ rest.getHeader("X-AUTH-TOKEN").toString());
+    logger.debug("Token is "+ rest.getHeader("X-AUTH-TOKEN").toString());
     return rest.getHeader("X-AUTH-TOKEN");
   }
 }

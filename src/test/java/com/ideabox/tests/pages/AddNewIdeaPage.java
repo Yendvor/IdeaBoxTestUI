@@ -67,6 +67,7 @@ public class AddNewIdeaPage extends GeneralIdeaPage{
       .until(ExpectedConditions.visibilityOf(cancelButton));
     new WebDriverWait(driver, 1)
       .until(ExpectedConditions.visibilityOf(submitButton));
+
   }
 
 
