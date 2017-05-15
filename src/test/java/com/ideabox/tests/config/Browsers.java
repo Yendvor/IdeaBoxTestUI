@@ -15,12 +15,14 @@ public class Browsers {
   public static final String USERNAME = System.getenv("BROWSERSTACK_USER");
   public static final String AUTOMATE_KEY = System.getenv("BROWSERSTACK_ACCESSKEY");
   public static final String browserStack_Local = System.getenv("BROWSERSTACK_LOCAL");
+  public static final String browserStack_LocalIdentifier = System.getenv("BROWSERSTACK_LOCAL_IDENTIFIER");
   public static final String browserStack_URl = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
   public static WebDriver getDriver() throws MalformedURLException {
     WebDriver dr;
     DesiredCapabilities caps =new DesiredCapabilities();
     caps.setCapability("browserstack.local", browserStack_Local);
+    caps.setCapability("browserstack.localIdentifier", browserStack_LocalIdentifier);
     if (System.getProperty("browserStack","false").toLowerCase().equals("true")){
       switch (System.getProperty("browser","chrome").toLowerCase()){
         case "chrome":
