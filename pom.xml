@@ -180,23 +180,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.browserstack</groupId>
-                <artifactId>automate-maven-plugin</artifactId>
-                <version>0.7.2-SNAPSHOT</version>
-                <configuration>
-                    <source> 1.8.0_71</source>
-                    <target> 1.8.0_71</target>
-                    <complianceLevel> 1.8.0_71</complianceLevel>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
