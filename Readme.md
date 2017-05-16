@@ -8,11 +8,11 @@ Java + Webdriver(+PageObject) + Cucumber was used for this task.
 Framework is based on TestNG.
 
 What was done:
-1. All precondition steps are implemented via REST API, used RestAssured.
-2. Implemented Logging to the qa-testing-log.txt.
+1. All precondition steps are implemented via REST API.
+2. Implemented Logging to the qa-test-error.log; qa-test-info.log
 3. Implemented Reporting:
   * cucumber-reporting plugin in Jenkins
-  * cucumber-reporting CustomReporter (used for local runs).
+  * cucumber-reporting via maven plugin (used for local runs:  ```mvn verify test```).
 4. Used maven for building and running tests: 
     ```mvn clean test```
 5. Created docker file with Jenkins to run tests:
@@ -40,9 +40,3 @@ What was done:
    </listeners>
    ```
  For now retry number is set to 2 times.
-
-11. Tests could be run using browsers:
-  * on docker machine
-  * on cloud service BrowserStack
-
-    ```-DbrowserStack = true```
