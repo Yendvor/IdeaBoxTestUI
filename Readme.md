@@ -9,7 +9,10 @@ Framework is based on TestNG.
 
 What was done:
 1. All precondition steps are implemented via REST API.
-2. Implemented Logging to the qa-test-error.log; qa-test-info.log
+2. Implemented Logging to the qa-test-error.log.
+   To switch on logging INFO to console please use parameter
+   ```-Dinfo.logging.to=console```
+
 3. Implemented Reporting:
   * cucumber-reporting plugin in Jenkins
   * cucumber-reporting via maven plugin (used for local runs:  ```mvn verify test```).
