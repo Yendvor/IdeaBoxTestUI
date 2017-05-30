@@ -17,11 +17,11 @@ public class Browsers {
       Capabilities firefox = DesiredCapabilities.firefox();
       Capabilities chrome = DesiredCapabilities.chrome();
       if (System.getProperty("runner", "jenkins").equals("local")) {
-        System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "lib/chromedriver-mac");
         System.setProperty("webdriver.gecko.driver", "lib/geckodriver-mac");
       }else{
         System.setProperty("webdriver.chrome.driver", "lib/chromedriver-ubuntu");
-        System.setProperty("webdriver.gecko.driver", "lib/geckodriver");
+        System.setProperty("webdriver.gecko.driver", "lib/geckodriver-ubuntu");
       }
       switch (System.getProperty("browser","chrome").toLowerCase()){
         case "chrome":
